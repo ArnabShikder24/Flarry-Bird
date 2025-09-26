@@ -5,7 +5,7 @@ public class PipeSpawanScript : MonoBehaviour
     public GameObject pipe;
     public float spawnRate = 2f;
     private float timer = 0f;
-    public float heightOffset = 2;
+    public float offsetRange = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,8 +29,8 @@ public class PipeSpawanScript : MonoBehaviour
 
     void spawnPipe()
     {
-        float lowestPoint = transform.position.y - heightOffset;
-        float highestPoint = transform.position.y + heightOffset;
-        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation);
+        float randomY = Random.Range(-offsetRange, offsetRange);
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + randomY, 0);
+        Instantiate(pipe, spawnPos, transform.rotation);
     }
 }
